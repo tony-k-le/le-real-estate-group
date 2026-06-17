@@ -167,11 +167,18 @@
     letter-spacing:.12em;text-transform:uppercase;background:rgba(18,17,16,.9);color:var(--bone);
     padding:.55em 1em;border-radius:40px;backdrop-filter:blur(4px)}
   .gallery-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:.7rem}
-  .thumb{padding:0;border:1px solid var(--line);background:none;cursor:pointer;aspect-ratio:1/1;
+  .thumb{position:relative;padding:0;border:1px solid var(--line);background:none;cursor:pointer;aspect-ratio:1/1;
     overflow:hidden;border-radius:2px;transition:border-color .3s var(--ease),opacity .3s}
   .thumb img{width:100%;height:100%;object-fit:cover;display:block}
   .thumb:hover{opacity:.85}
   .thumb.active{border-color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+  /* "Leased!" stamp, centered over each photo */
+  .leased-stamp{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;
+    display:inline-flex;align-items:center;gap:.45em;background:rgba(18,17,16,.88);color:var(--bone);
+    font-family:var(--sans);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:1rem;
+    padding:.7em 1.2em;border-radius:40px;backdrop-filter:blur(3px);box-shadow:0 6px 20px rgba(0,0,0,.28);
+    pointer-events:none;white-space:nowrap}
+  .thumb .leased-stamp{font-size:.46rem;padding:.4em .65em;gap:.25em;letter-spacing:.06em}
   .feature-info .hood{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
   .feature-info h3{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:600;margin:.45rem 0 0}
   .specs{display:flex;flex-wrap:wrap;gap:1.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
@@ -372,21 +379,21 @@
           <img id="galMain" loading="lazy"
             src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775744848-XV7851MAQZKFVMCC9926/IMG_4779-001.JPG?format=1500w"
             alt="2273 Euclid Ave, Long Beach — interior">
-          <span class="badge">For Lease</span>
+          <span class="leased-stamp">🔑 Leased!</span>
         </div>
         <div class="gallery-thumbs" id="galThumbs">
           <button class="thumb active" type="button" aria-label="View photo 1"
             data-full="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775744848-XV7851MAQZKFVMCC9926/IMG_4779-001.JPG?format=1500w">
-            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775744848-XV7851MAQZKFVMCC9926/IMG_4779-001.JPG?format=500w" alt="2273 Euclid Ave — photo 1"></button>
+            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775744848-XV7851MAQZKFVMCC9926/IMG_4779-001.JPG?format=500w" alt="2273 Euclid Ave — photo 1"><span class="leased-stamp" aria-hidden="true">🔑 Leased!</span></button>
           <button class="thumb" type="button" aria-label="View photo 2"
             data-full="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775288877-Y4EG1ZKNH3RSOYNETEXV/IMG_4780-001.JPG?format=1500w">
-            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775288877-Y4EG1ZKNH3RSOYNETEXV/IMG_4780-001.JPG?format=500w" alt="2273 Euclid Ave — photo 2"></button>
+            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775288877-Y4EG1ZKNH3RSOYNETEXV/IMG_4780-001.JPG?format=500w" alt="2273 Euclid Ave — photo 2"><span class="leased-stamp" aria-hidden="true">🔑 Leased!</span></button>
           <button class="thumb" type="button" aria-label="View photo 3"
             data-full="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775241162-3PUFTLXF4YX8JHLO0LI8/IMG_4800-001.JPG?format=1500w">
-            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775241162-3PUFTLXF4YX8JHLO0LI8/IMG_4800-001.JPG?format=500w" alt="2273 Euclid Ave — photo 3"></button>
+            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775241162-3PUFTLXF4YX8JHLO0LI8/IMG_4800-001.JPG?format=500w" alt="2273 Euclid Ave — photo 3"><span class="leased-stamp" aria-hidden="true">🔑 Leased!</span></button>
           <button class="thumb" type="button" aria-label="View photo 4"
             data-full="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775232510-W2HQKQ11UPM0LRBPZ1L4/IMG_4794-001.JPG?format=1500w">
-            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775232510-W2HQKQ11UPM0LRBPZ1L4/IMG_4794-001.JPG?format=500w" alt="2273 Euclid Ave — photo 4"></button>
+            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775232510-W2HQKQ11UPM0LRBPZ1L4/IMG_4794-001.JPG?format=500w" alt="2273 Euclid Ave — photo 4"><span class="leased-stamp" aria-hidden="true">🔑 Leased!</span></button>
         </div>
       </div>
 

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L/E Real Estate Group — Long Beach Residential Management</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="L/E Real Estate Group — a full-service residential property management firm in Long Beach, CA, offering personalized solutions for owners and exceptional service for tenants.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Color tokens */
+    --ink:#121110;          /* black */
+    --charcoal:#2b2926;
+    --stone:#6c675f;
+    --mist:#a59f94;
+    --bone:#efe9df;         /* soft sand backdrop */
+    --paper:#faf8f4;        /* warm white backdrop */
+    --sand:#e4dccf;         /* deeper natural backdrop */
+    --line:#e2dcd0;
+    --accent:#141210;       /* mono black accent (light bg) */
+    --accent-deep:#000000;
+    --accent-soft:#cdc3b3;  /* soft natural accent (dark bg) */
+    --white:#ffffff;
+    /* Type scale */
+    --fs-hero:clamp(2.8rem,7vw,6rem);
+    --fs-h2:clamp(2rem,4.5vw,3.4rem);
+    --fs-h3:clamp(1.4rem,2.4vw,1.9rem);
+    --fs-lead:clamp(1.1rem,1.6vw,1.4rem);
+    --fs-body:1.0625rem;
+    --fs-small:.85rem;
+    /* Spacing scale */
+    --s1:.5rem; --s2:1rem; --s3:1.5rem; --s4:2.5rem; --s5:4rem; --s6:6rem; --s7:9rem;
+    --container:1240px;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Inter',system-ui,sans-serif;
+    --ease:cubic-bezier(.4,0,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);font-size:var(--fs-body);line-height:1.7;
+    color:var(--charcoal);background:var(--paper);
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;color:var(--ink);letter-spacing:.005em}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:var(--container);margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+  .eyebrow{font-family:var(--sans);font-size:.74rem;font-weight:600;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--accent);display:inline-block}
+  /* eyebrows over dark backdrops use the soft natural tone */
+  .hero .eyebrow,.mgmt .eyebrow{color:var(--accent-soft)}
+  .lead{font-size:var(--fs-lead);color:var(--stone);font-weight:300;line-height:1.6}
+  .section{padding:var(--s7) 0}
+  .center{text-align:center}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--sans);
+    font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    padding:1.05em 2.1em;border:1px solid var(--ink);background:var(--ink);color:var(--bone);
+    cursor:pointer;transition:all .35s var(--ease);border-radius:1px}
+  .btn:hover{background:transparent;color:var(--ink)}
+  .btn--ghost{background:transparent;color:var(--ink)}
+  .btn--ghost:hover{background:var(--ink);color:var(--bone)}
+  .btn--light{border-color:var(--bone);background:var(--bone);color:var(--ink)}
+  .btn--light:hover{background:transparent;color:var(--bone)}
+  .btn--outline-light{background:transparent;border-color:rgba(247,244,239,.6);color:var(--bone)}
+  .btn--outline-light:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+  .link-arrow{font-family:var(--sans);font-size:.78rem;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink);display:inline-flex;align-items:center;gap:.5em;
+    border-bottom:1px solid var(--accent);padding-bottom:.35em;transition:gap .3s var(--ease)}
+  .link-arrow:hover{gap:.9em}
+
+  /* Nav */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .4s var(--ease);
+    border-bottom:1px solid transparent}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;
+    height:84px;max-width:var(--container);margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem);transition:height .4s var(--ease)}
+  .brand{display:flex;align-items:center;gap:.85rem;color:var(--bone);transition:color .4s var(--ease)}
+  .brand .emblem{width:42px;height:42px;border:1.5px solid currentColor;display:grid;place-items:center;
+    font-family:var(--serif);font-size:1.15rem;font-weight:600;letter-spacing:.02em;border-radius:2px;transition:all .4s var(--ease)}
+  .brand .wordmark{display:flex;flex-direction:column;line-height:1}
+  .brand .wordmark b{font-family:var(--serif);font-size:1.15rem;font-weight:600;letter-spacing:.04em}
+  .brand .wordmark span{font-family:var(--sans);font-size:.58rem;font-weight:500;letter-spacing:.28em;
+    text-transform:uppercase;margin-top:.35em;opacity:.8}
+  /* Official L/E logo (single-path vector, recolored via currentColor) */
+  .le-logo{height:62px;width:auto;display:block;color:inherit;transition:color .4s var(--ease),height .4s var(--ease)}
+  header.nav.scrolled .le-logo{height:62px}
+  /* pull the logo's built-in left whitespace off so its disc sits on the margin, aligning with the hero text below */
+  .brand .le-logo{margin-left:-5px}
+  .le-logo--foot{height:50px;margin-bottom:1.4rem;color:var(--bone)}
+  nav.menu{display:flex;align-items:center;gap:2.4rem}
+  nav.menu a{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--bone);opacity:.85;transition:opacity .3s,color .4s}
+  nav.menu a:hover{opacity:1}
+  nav.menu .nav-cta{border:1px solid rgba(247,244,239,.45);padding:.7em 1.3em;opacity:1;border-radius:1px;transition:all .3s}
+  nav.menu .nav-cta:hover{background:var(--bone);color:var(--ink)}
+  /* scrolled state */
+  header.nav.scrolled{background:var(--paper);border-bottom-color:var(--line);box-shadow:0 1px 24px rgba(23,21,19,.05)}
+  header.nav.scrolled .nav-inner{height:70px}
+  header.nav.scrolled .brand{color:var(--ink)}
+  header.nav.scrolled nav.menu a{color:var(--charcoal)}
+  header.nav.scrolled nav.menu .nav-cta{border-color:var(--ink)}
+  header.nav.scrolled nav.menu .nav-cta:hover{background:var(--ink);color:var(--bone)}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px}
+  .menu-toggle span{width:26px;height:1.5px;background:var(--bone);transition:background .4s}
+  header.nav.scrolled .menu-toggle span{background:var(--ink)}
+
+  /* Hero */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;
+    color:var(--bone);overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:-2;background:#2b2722 center/cover no-repeat;
+    background-image:linear-gradient(0deg,rgba(20,18,16,.5),rgba(20,18,16,.18)),
+      url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=2100&q=80');
+    transform:scale(1.08);will-change:transform}
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg,rgba(20,18,16,.35) 0%,rgba(20,18,16,0) 30%,rgba(20,18,16,.7) 100%)}
+  .hero-content{padding-bottom:var(--s7);padding-top:9rem;max-width:912px}
+  .hero h1{color:var(--bone);font-size:var(--fs-hero);font-weight:400;margin:.4em 0 .5em}
+  .hero h1 em{font-style:italic;color:var(--accent-soft)}
+  .hero p{font-size:var(--fs-lead);font-weight:300;max-width:600px;color:rgba(247,244,239,.9);margin-bottom:2.4rem}
+  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+  .scroll-hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+    font-family:var(--sans);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;
+    color:rgba(247,244,239,.7);display:flex;flex-direction:column;align-items:center;gap:.7rem}
+  .scroll-hint::after{content:"";width:1px;height:46px;background:linear-gradient(rgba(247,244,239,.7),transparent);animation:drop 2s var(--ease) infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* Intro / statement */
+  .statement{background:var(--bone)}
+  .statement .container{max-width:980px;text-align:center}
+  .statement blockquote{font-family:var(--serif);font-size:clamp(1.7rem,3.4vw,2.9rem);
+    font-weight:400;line-height:1.32;color:var(--ink);letter-spacing:.005em}
+  .statement blockquote .q{color:var(--accent)}
+
+  /* Pillars */
+  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+  .pillar{position:relative;overflow:hidden;min-height:540px;display:flex;flex-direction:column;
+    justify-content:flex-end;padding:3rem;color:var(--bone);border-radius:2px;
+    isolation:isolate;background-color:#23201c}
+  .pillar-img{position:absolute;inset:0;z-index:-2;background:#23201c center/cover no-repeat;
+    transition:transform 1.1s var(--ease)}
+  .pillar:hover .pillar-img{transform:scale(1.06)}
+  .pillar::after{content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg,rgba(20,18,16,.05) 0%,rgba(20,18,16,.55) 55%,rgba(20,18,16,.85) 100%)}
+  .pillar .eyebrow{color:var(--accent-soft)}
+  .pillar h3{color:var(--bone);font-size:clamp(2rem,3vw,2.6rem);margin:.5rem 0 .8rem}
+  .pillar p{color:rgba(247,244,239,.9);font-weight:300;margin-bottom:1.6rem;max-width:42ch}
+  .pillar .link-arrow{color:var(--bone);border-color:var(--accent-soft)}
+
+  /* Section heading helper */
+  .sec-head{max-width:680px;margin-bottom:3.5rem}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .sec-head h2{font-size:var(--fs-h2);font-weight:400;margin:.5rem 0 .9rem}
+  .sec-head p{color:var(--stone);font-weight:300;font-size:var(--fs-lead)}
+
+  /* Properties */
+  .properties{background:var(--paper)}
+  /* Featured property */
+  .feature{display:grid;grid-template-columns:1.12fr 1fr;gap:3.5rem;align-items:start}
+  .gallery-main{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:3px;background:#d8d1c5}
+  .gallery-main img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .4s var(--ease)}
+  .badge{position:absolute;top:1rem;left:1rem;font-family:var(--sans);font-size:.64rem;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;background:rgba(18,17,16,.9);color:var(--bone);
+    padding:.55em 1em;border-radius:40px;backdrop-filter:blur(4px)}
+  .gallery-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:.7rem}
+  .thumb{padding:0;border:1px solid var(--line);background:none;cursor:pointer;aspect-ratio:1/1;
+    overflow:hidden;border-radius:2px;transition:border-color .3s var(--ease),opacity .3s}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .thumb:hover{opacity:.85}
+  .thumb.active{border-color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+  .feature-info .hood{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .feature-info h3{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:600;margin:.45rem 0 0}
+  .specs{display:flex;flex-wrap:wrap;gap:1.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.82rem;color:var(--stone)}
+  .specs b{color:var(--ink);font-weight:600}
+  .feature-specs{margin:1.2rem 0 1.8rem;padding-bottom:1.1rem;border-bottom:1px solid var(--line)}
+  .hl{list-style:none;margin:0 0 2rem}
+  .hl li{position:relative;padding:.6rem 0 .6rem 1.5rem;border-bottom:1px solid var(--line);
+    font-size:.96rem;color:var(--charcoal);font-weight:300}
+  .hl li::before{content:"";position:absolute;left:0;top:1.25em;width:11px;height:1px;background:var(--accent)}
+  .feature-cta{display:flex;gap:1rem;flex-wrap:wrap}
+  .feature-prose{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-top:4rem;
+    padding-top:3.5rem;border-top:1px solid var(--line)}
+  .feature-prose h4{font-size:1.5rem;font-weight:500;margin-bottom:1rem}
+  .feature-prose p{color:var(--stone);font-weight:300}
+  .feature-prose .note{margin-top:1.2rem;font-size:.9rem;color:var(--mist);font-style:italic}
+
+  /* Management */
+  .mgmt{background:var(--ink);color:var(--bone)}
+  .mgmt .container{display:grid;grid-template-columns:1.05fr 1fr;gap:5rem;align-items:center}
+  .mgmt h2{color:var(--bone);font-size:var(--fs-h2);font-weight:400;margin:.6rem 0 1.1rem}
+  .mgmt .lead{color:rgba(247,244,239,.78)}
+  .mgmt-img{aspect-ratio:4/5;background:#2b2722 center/cover no-repeat;border-radius:2px}
+  .svc-list{list-style:none;margin:2rem 0 2.4rem;border-top:1px solid rgba(247,244,239,.16)}
+  .svc-list li{display:flex;gap:1.4rem;padding:1.3rem 0;border-bottom:1px solid rgba(247,244,239,.16);align-items:baseline}
+  .svc-list .num{font-family:var(--serif);font-size:1.05rem;color:var(--accent-soft);font-weight:600;min-width:2.2rem}
+  .svc-list b{font-family:var(--serif);font-size:1.3rem;font-weight:500;color:var(--bone)}
+  .svc-list p{font-size:.92rem;color:rgba(247,244,239,.66);font-weight:300;margin-top:.15rem}
+
+  /* Testimonials */
+  .testi{background:var(--bone)}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  .quote{background:var(--white);border:1px solid var(--line);border-radius:3px;padding:2.4rem}
+  .quote .mark{font-family:var(--serif);font-size:3.2rem;color:var(--accent);line-height:.6;display:block;height:1.4rem}
+  .quote p{font-family:var(--serif);font-size:1.28rem;line-height:1.45;color:var(--ink);font-weight:400;margin:1rem 0 1.6rem}
+  .quote .who{font-family:var(--sans);font-size:.78rem;font-weight:600;letter-spacing:.06em;color:var(--charcoal)}
+  .quote .who span{display:block;font-weight:400;letter-spacing:.14em;text-transform:uppercase;
+    font-size:.68rem;color:var(--mist);margin-top:.3rem}
+
+  /* Referral / applications split CTA */
+  .duo{display:grid;grid-template-columns:1fr 1fr}
+  .duo-panel{padding:var(--s7) clamp(1.5rem,4vw,4rem)}
+  .duo-panel.ref{background:var(--ink);color:var(--bone)}
+  .duo-panel.app{background:var(--sand);color:var(--ink)}
+  .duo-panel .eyebrow{color:var(--accent-soft)}
+  .duo-panel.app .eyebrow{color:var(--stone)}
+  .duo-panel h2{color:inherit;font-size:var(--fs-h3);font-weight:500;margin:.7rem 0 1rem}
+  .duo-panel p{font-weight:300;opacity:.9;margin-bottom:1.8rem;max-width:42ch}
+  .ref-form{display:flex;gap:.6rem;flex-wrap:wrap;max-width:420px}
+  .ref-form input{flex:1;min-width:180px;padding:1em 1.1em;border:1px solid rgba(247,244,239,.35);
+    background:rgba(247,244,239,.06);color:var(--bone);font-family:var(--sans);font-size:.9rem;border-radius:1px}
+  .ref-form input::placeholder{color:rgba(247,244,239,.6)}
+  .steps{list-style:none;counter-reset:step;margin-bottom:1.9rem}
+  .steps li{counter-increment:step;display:flex;gap:1rem;align-items:center;padding:.55rem 0;font-weight:300}
+  .steps li::before{content:counter(step);width:1.9rem;height:1.9rem;border:1px solid rgba(20,18,16,.4);
+    border-radius:50%;display:grid;place-items:center;font-family:var(--sans);font-size:.8rem;font-weight:600;flex-shrink:0}
+
+  /* Contact */
+  .contact{background:var(--paper)}
+  .contact .container{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start}
+  .contact-info .row{padding:1.3rem 0;border-bottom:1px solid var(--line)}
+  .contact-info .row:first-of-type{border-top:1px solid var(--line)}
+  .contact-info .k{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
+  .contact-info .v{font-size:1.05rem;color:var(--ink)}
+  .socials{display:flex;gap:.8rem;margin-top:1.8rem}
+  .socials a{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;
+    color:var(--charcoal);transition:all .3s var(--ease)}
+  .socials a:hover{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+  form.contact-form{display:grid;gap:1.1rem}
+  .field{display:flex;flex-direction:column;gap:.5rem}
+  .field.row2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+  label{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
+  input,select,textarea{font-family:var(--sans);font-size:.98rem;color:var(--ink);background:var(--white);
+    border:1px solid var(--line);padding:.95em 1.05em;border-radius:2px;transition:border-color .3s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(20,18,16,.1)}
+  textarea{resize:vertical;min-height:130px}
+  .map{margin-top:0;border:1px solid var(--line);border-radius:3px;overflow:hidden;aspect-ratio:16/7}
+  .map iframe{width:100%;height:100%;border:0;filter:grayscale(.35) contrast(.95)}
+
+  /* Footer */
+  footer.site{background:var(--ink);color:var(--bone);padding:var(--s6) 0 2.5rem}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3rem;
+    padding-bottom:3.5rem;border-bottom:1px solid rgba(247,244,239,.14)}
+  .foot-brand .emblem{width:54px;height:54px;border:1.5px solid var(--bone);display:grid;place-items:center;
+    font-family:var(--serif);font-size:1.4rem;font-weight:600;border-radius:2px;margin-bottom:1.3rem}
+  .foot-brand p{color:rgba(247,244,239,.62);font-weight:300;max-width:34ch;font-size:.95rem}
+  .foot-col h5{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent-soft);margin-bottom:1.2rem}
+  .foot-col a{display:block;color:rgba(247,244,239,.78);font-size:.95rem;font-weight:300;padding:.42rem 0;transition:color .3s}
+  .foot-col a:hover{color:var(--bone)}
+  .foot-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+    padding-top:2.2rem;font-size:.8rem;color:rgba(247,244,239,.5)}
+  .foot-bot .em{font-family:var(--serif);letter-spacing:.04em}
+
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+  /* Responsive */
+  @media(max-width:980px){
+    .mgmt .container,.contact .container,.feature{grid-template-columns:1fr;gap:3rem}
+    .testi-grid{grid-template-columns:1fr 1fr}
+    .feature-prose{grid-template-columns:1fr;gap:2.4rem}
+  }
+  @media(max-width:720px){
+    :root{--s7:5.5rem;--s6:4.5rem}
+    nav.menu{position:fixed;inset:0 0 0 auto;width:min(82vw,360px);background:var(--paper);
+      flex-direction:column;justify-content:center;align-items:flex-start;gap:1.6rem;padding:3rem;
+      transform:translateX(100%);transition:transform .45s var(--ease);box-shadow:-20px 0 60px rgba(0,0,0,.18)}
+    nav.menu.open{transform:none}
+    nav.menu a{color:var(--ink);font-size:1rem}
+    nav.menu .nav-cta{border-color:var(--ink)}
+    .menu-toggle{display:flex;z-index:101}
+    .pillars,.testi-grid,.duo,.field.row2{grid-template-columns:1fr}
+    .pillar{min-height:440px;padding:2rem}
+    .hero-cta{flex-direction:column;align-items:stretch}
+    .hero-cta .btn{justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="L/E Real Estate Group home">
+      <svg class="le-logo" viewBox="0 0 400 184" role="img" aria-label="L/E Real Estate Group">
+        <path fill="currentColor" fill-rule="nonzero" d="M 125.75 79.632812 L 116.828125 79.632812 L 116.828125 88.59375 L 125.421875 88.59375 L 125.421875 93.292969 L 116.828125 93.292969 L 116.828125 102.695312 L 125.75 102.695312 L 125.75 107.394531 L 111.429688 107.394531 L 111.429688 74.933594 L 125.75 74.933594 Z M 71.933594 142.722656 L 68.414062 141.625 L 100.191406 39.605469 L 103.710938 40.703125 Z M 59.410156 107.394531 L 46.375 107.394531 L 46.375 74.933594 L 51.773438 74.933594 L 51.773438 102.695312 L 59.410156 102.695312 Z M 86.0625 20.765625 C 46.527344 20.765625 14.472656 52.820312 14.472656 92.359375 C 14.472656 131.894531 46.527344 163.945312 86.0625 163.945312 C 125.601562 163.945312 157.652344 131.894531 157.652344 92.359375 C 157.652344 52.820312 125.601562 20.765625 86.0625 20.765625 M 190.433594 135.660156 L 193.191406 135.660156 L 193.191406 49.050781 L 190.433594 49.050781 Z M 342.449219 56.144531 L 327.964844 56.144531 L 327.964844 32.90625 L 321.574219 32.90625 L 321.574219 61.957031 L 342.449219 61.957031 Z M 333.191406 83.578125 L 342.035156 83.578125 L 342.035156 106.738281 L 348.421875 106.738281 L 348.421875 83.578125 L 357.261719 83.578125 L 357.261719 77.6875 L 333.191406 77.6875 Z M 344.773438 139.109375 C 344.773438 143.714844 342.410156 146.078125 338.507812 146.078125 C 334.605469 146.078125 332.238281 143.632812 332.238281 138.902344 L 332.238281 122.46875 L 325.847656 122.46875 L 325.847656 139.066406 C 325.847656 147.617188 330.621094 151.976562 338.421875 151.976562 C 346.226562 151.976562 351.164062 147.65625 351.164062 138.859375 L 351.164062 122.46875 L 344.773438 122.46875 Z M 242.257812 140.3125 L 248.691406 140.3125 L 248.691406 144.460938 C 247.070312 145.625 244.996094 146.203125 242.671875 146.203125 C 237.527344 146.203125 233.875 142.304688 233.875 136.992188 L 233.875 136.910156 C 233.875 131.972656 237.570312 127.863281 242.214844 127.863281 C 245.578125 127.863281 247.570312 128.941406 249.808594 130.808594 L 253.835938 125.953125 C 250.804688 123.378906 247.652344 121.96875 242.421875 121.96875 C 233.625 121.96875 227.195312 128.734375 227.195312 136.992188 L 227.195312 137.074219 C 227.195312 145.664062 233.417969 152.015625 242.464844 152.015625 C 247.777344 152.015625 251.886719 149.941406 254.875 147.40625 L 254.875 134.792969 L 242.257812 134.792969 Z M 278.78125 132.46875 C 278.78125 134.917969 276.996094 136.578125 273.882812 136.578125 L 267.410156 136.578125 L 267.410156 128.234375 L 273.757812 128.234375 C 276.871094 128.234375 278.78125 129.648438 278.78125 132.386719 Z M 285.253906 132.136719 L 285.253906 132.054688 C 285.253906 126.078125 281.148438 122.46875 274.300781 122.46875 L 261.019531 122.46875 L 261.019531 151.519531 L 267.410156 151.519531 L 267.410156 142.222656 L 272.429688 142.222656 L 278.65625 151.519531 L 286.125 151.519531 L 279.03125 141.144531 C 282.722656 139.773438 285.253906 136.824219 285.253906 132.136719 M 267.578125 101.507812 C 264.253906 101.507812 261.515625 100.140625 258.902344 97.980469 L 255.125 102.503906 C 258.613281 105.617188 263.050781 107.152344 267.453125 107.152344 C 273.71875 107.152344 278.117188 103.914062 278.117188 98.148438 L 278.117188 98.0625 C 278.117188 93 274.796875 90.882812 268.90625 89.347656 C 263.882812 88.0625 262.636719 87.4375 262.636719 85.53125 L 262.636719 85.445312 C 262.636719 84.035156 263.921875 82.914062 266.371094 82.914062 C 268.820312 82.914062 271.351562 83.996094 273.925781 85.777344 L 277.246094 80.964844 C 274.300781 78.597656 270.6875 77.269531 266.457031 77.269531 C 260.523438 77.269531 256.289062 80.757812 256.289062 86.027344 L 256.289062 86.109375 C 256.289062 91.878906 260.066406 93.496094 265.917969 94.992188 C 270.773438 96.238281 271.765625 97.066406 271.765625 98.683594 L 271.765625 98.769531 C 271.765625 100.46875 270.191406 101.507812 267.578125 101.507812 M 315.183594 94.578125 L 319.042969 85.15625 L 322.902344 94.578125 Z M 334.523438 106.738281 L 322.070312 77.476562 L 316.179688 77.476562 L 303.726562 106.738281 L 310.246094 106.738281 L 312.898438 100.222656 L 325.183594 100.222656 L 327.839844 106.738281 Z M 300.78125 40.375 L 304.636719 49.796875 L 296.917969 49.796875 Z M 294.636719 55.441406 L 306.921875 55.441406 L 309.578125 61.957031 L 316.257812 61.957031 L 303.808594 32.695312 L 297.914062 32.695312 L 285.464844 61.957031 L 291.980469 61.957031 Z M 281.4375 56.269531 L 265.667969 56.269531 L 265.667969 50.167969 L 279.363281 50.167969 L 279.363281 44.484375 L 265.667969 44.484375 L 265.667969 38.589844 L 281.230469 38.589844 L 281.230469 32.90625 L 259.316406 32.90625 L 259.316406 61.957031 L 281.4375 61.957031 Z M 369.34375 101.050781 L 369.34375 94.949219 L 383.039062 94.949219 L 383.039062 89.265625 L 369.34375 89.265625 L 369.34375 83.371094 L 384.90625 83.371094 L 384.90625 77.6875 L 362.996094 77.6875 L 362.996094 106.738281 L 385.113281 106.738281 L 385.113281 101.050781 Z M 313.933594 137.074219 C 313.933594 142.054688 310.367188 146.121094 305.21875 146.121094 C 300.074219 146.121094 296.421875 141.972656 296.421875 136.992188 L 296.421875 136.910156 C 296.421875 131.929688 299.992188 127.863281 305.136719 127.863281 C 310.285156 127.863281 313.933594 132.011719 313.933594 136.992188 Z M 305.21875 121.96875 C 296.253906 121.96875 289.742188 128.734375 289.742188 136.992188 L 289.742188 137.074219 C 289.742188 145.335938 296.171875 152.015625 305.136719 152.015625 C 314.101562 152.015625 320.617188 145.25 320.617188 136.992188 L 320.617188 136.910156 C 320.617188 128.652344 314.183594 121.96875 305.21875 121.96875 M 296.21875 106.738281 L 296.21875 83.578125 L 305.058594 83.578125 L 305.058594 77.6875 L 280.988281 77.6875 L 280.988281 83.578125 L 289.828125 83.578125 L 289.828125 106.738281 Z M 234.871094 38.671875 L 241.21875 38.671875 C 244.332031 38.671875 246.242188 40.085938 246.242188 42.824219 L 246.242188 42.90625 C 246.242188 45.355469 244.457031 47.015625 241.34375 47.015625 L 234.871094 47.015625 Z M 234.871094 52.660156 L 239.890625 52.660156 L 246.117188 61.957031 L 253.585938 61.957031 L 246.492188 51.582031 C 250.183594 50.210938 252.714844 47.265625 252.714844 42.574219 L 252.714844 42.492188 C 252.714844 36.515625 248.609375 32.90625 241.757812 32.90625 L 228.480469 32.90625 L 228.480469 61.957031 L 234.871094 61.957031 Z M 374.199219 132.71875 C 374.199219 135.207031 372.332031 137.117188 369.136719 137.117188 L 364.074219 137.117188 L 364.074219 128.234375 L 369.011719 128.234375 C 372.207031 128.234375 374.199219 129.773438 374.199219 132.636719 Z M 369.550781 122.46875 L 357.683594 122.46875 L 357.683594 151.519531 L 364.074219 151.519531 L 364.074219 142.804688 L 368.929688 142.804688 C 375.445312 142.804688 380.675781 139.316406 380.675781 132.59375 L 380.675781 132.511719 C 380.675781 126.574219 376.484375 122.46875 369.550781 122.46875 M 250.597656 101.050781 L 234.828125 101.050781 L 234.828125 94.949219 L 248.527344 94.949219 L 248.527344 89.265625 L 234.828125 89.265625 L 234.828125 83.371094 L 250.390625 83.371094 L 250.390625 77.6875 L 228.480469 77.6875 L 228.480469 106.738281 L 250.597656 106.738281 Z M 250.597656 101.050781 "/>
+      </svg>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#properties">Properties</a>
+      <a href="#management">Management</a>
+      <a href="#referral">Referral</a>
+      <a class="nav-cta" href="#contact">Contact Us</a>
+    </nav>
+    <button class="menu-toggle" id="toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="container hero-content">
+    <span class="eyebrow">Residential Property Management</span>
+    <h1>Personalized care for<br>every <em>address</em> we manage.</h1>
+    <p>A full-service residential management firm delivering tailored solutions for owners and exceptional service for the tenants who call our properties home.</p>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ===== STATEMENT ===== -->
+<section class="section statement">
+  <div class="container reveal">
+    <span class="eyebrow">Who we are</span>
+    <blockquote><span class="q">“</span>A full-service residential management firm that provides personalized solutions for its clients and exceptional customer service to its tenants.<span class="q">”</span></blockquote>
+  </div>
+</section>
+
+<!-- ===== PILLARS ===== -->
+<section class="section" style="background:var(--paper)">
+  <div class="container">
+    <div class="pillars">
+      <article class="pillar reveal">
+        <div class="pillar-img" style="background-image:url('https://images.unsplash.com/photo-1597211887448-57b1d99d1d1c?auto=format&fit=crop&w=1400&q=80')"></div>
+        <span class="eyebrow">For Tenants</span>
+        <h3>L/E Properties</h3>
+        <p>We own, develop, and manage residential homes across Long Beach's most sought-after coastal neighborhoods — from month-to-month flexibility to settled annual leases.</p>
+        <a class="link-arrow" href="#properties">Browse Listings →</a>
+      </article>
+      <article class="pillar reveal d1">
+        <div class="pillar-img" style="background-image:url('https://images.unsplash.com/photo-1765371513276-a74f1ecbcf7d?auto=format&fit=crop&w=1400&q=80')"></div>
+        <span class="eyebrow">For Owners</span>
+        <h3>L/E Management</h3>
+        <p>Complete property management — accounting, administration, and maintenance — engineered to maximize the full market potential of every investment.</p>
+        <a class="link-arrow" href="#management">Owner Services →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROPERTIES ===== -->
+<section class="section properties" id="properties">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">L/E Properties · Featured</span>
+      <h2>2273 Euclid Ave</h2>
+      <p>A thoughtfully updated front-unit duplex blending classic Long Beach charm with modern upgrades — now available for lease.</p>
+    </div>
+
+    <div class="feature reveal">
+      <div class="gallery">
+        <div class="gallery-main">
+          <img id="galMain" loading="lazy"
+            src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775744848-XV7851MAQZKFVMCC9926/IMG_4779-001.JPG?format=1500w"
+            alt="2273 Euclid Ave, Long Beach — interior">
+          <span class="badge">For Lease</span>
+        </div>
+        <div class="gallery-thumbs" id="galThumbs">
+          <button class="thumb active" type="button" aria-label="View photo 1"
+            data-full="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775744848-XV7851MAQZKFVMCC9926/IMG_4779-001.JPG?format=1500w">
+            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775744848-XV7851MAQZKFVMCC9926/IMG_4779-001.JPG?format=500w" alt="2273 Euclid Ave — photo 1"></button>
+          <button class="thumb" type="button" aria-label="View photo 2"
+            data-full="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775288877-Y4EG1ZKNH3RSOYNETEXV/IMG_4780-001.JPG?format=1500w">
+            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775288877-Y4EG1ZKNH3RSOYNETEXV/IMG_4780-001.JPG?format=500w" alt="2273 Euclid Ave — photo 2"></button>
+          <button class="thumb" type="button" aria-label="View photo 3"
+            data-full="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775241162-3PUFTLXF4YX8JHLO0LI8/IMG_4800-001.JPG?format=1500w">
+            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775241162-3PUFTLXF4YX8JHLO0LI8/IMG_4800-001.JPG?format=500w" alt="2273 Euclid Ave — photo 3"></button>
+          <button class="thumb" type="button" aria-label="View photo 4"
+            data-full="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775232510-W2HQKQ11UPM0LRBPZ1L4/IMG_4794-001.JPG?format=1500w">
+            <img loading="lazy" src="https://images.squarespace-cdn.com/content/v1/51c3460de4b006d7bdd58e92/1420775232510-W2HQKQ11UPM0LRBPZ1L4/IMG_4794-001.JPG?format=500w" alt="2273 Euclid Ave — photo 4"></button>
+        </div>
+      </div>
+
+      <div class="feature-info">
+        <span class="hood">Long Beach · Eastside</span>
+        <h3>Charming Restored Duplex</h3>
+        <div class="specs feature-specs">
+          <span><b>2</b> Beds</span><span><b>1</b> Bath</span><span><b>Duplex</b> Front Unit</span><span><b>Unfurnished</b></span>
+        </div>
+        <ul class="hl">
+          <li>Restored mahogany wood floors for a warm, modern feel</li>
+          <li>Open-concept living with a bright breakfast nook</li>
+          <li>Granite counters &amp; backsplash with new stainless steel appliances</li>
+          <li>Fresh designer paint, new double-paned windows, 2&quot; wood blinds</li>
+          <li>Exclusive front-yard space for entertaining or gardening</li>
+          <li>Quick 405 access — minutes to CSULB, LGB Airport, 2nd &amp; PCH, Belmont Shore</li>
+        </ul>
+        <div class="feature-cta">
+          <a class="btn" href="#applications">Apply for This Home</a>
+          <a class="btn btn--ghost" href="#contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-prose reveal">
+      <div>
+        <h4>Property overview</h4>
+        <p>This thoughtfully updated 2-bedroom, 1-bath duplex (front unit) blends classic Long Beach charm with modern upgrades, featuring an airy open layout, restored mahogany wood floors, and a stylish kitchen complete with granite surfaces and stainless steel appliances. The oversized front yard sets this home apart — perfect for outdoor entertaining, gardening, or weekend projects. Every detail, from designer paint to uniform 2&quot; blinds, creates an easy-to-love, move-in-ready experience.</p>
+      </div>
+      <div>
+        <h4>Lifestyle &amp; location</h4>
+        <p>Positioned near CSULB with seamless 405 access, the home offers a rare balance of suburban calm and urban convenience: grab coffee on the way to campus or work, bike to the beach, or head downtown in minutes for dining and nightlife. Long Beach's eastside neighborhoods are known for tree-lined streets, parks, and everyday amenities.</p>
+        <p class="note">Showings by appointment — please respect the current tenant's privacy. See the application section below for minimum criteria, required documents, and the step-by-step process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MANAGEMENT ===== -->
+<section class="section mgmt" id="management">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">L/E Management</span>
+      <h2>Full-service management,<br>maximum potential.</h2>
+      <p class="lead">L/E Management oversees every property management duty for the group — dedicated to maximizing the full market potential of each residence we steward.</p>
+      <ul class="svc-list">
+        <li><span class="num">01</span><div><b>Accounting</b><p>Transparent owner statements, rent collection, and reporting.</p></div></li>
+        <li><span class="num">02</span><div><b>Administrative</b><p>Leasing, screening, compliance, and tenant relations.</p></div></li>
+        <li><span class="num">03</span><div><b>Maintenance</b><p>Proactive upkeep and trusted vendors that protect asset value.</p></div></li>
+        <li><span class="num">04</span><div><b>Market Strategy</b><p>Positioning and pricing to realize full market potential.</p></div></li>
+      </ul>
+      <a class="btn btn--light" href="#referral">Work With Us</a>
+    </div>
+    <div class="mgmt-img reveal d1" style="background-image:url('https://images.unsplash.com/photo-1765371514743-45bd8e6c0a28?auto=format&fit=crop&w=1100&q=80')"></div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section testi">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">In their words</span>
+      <h2>Trusted by owners & tenants</h2>
+    </div>
+    <div class="testi-grid">
+      <blockquote class="quote reveal">
+        <span class="mark">“</span>
+        <p>They treat our building like it's their own. The reporting is clear and the maintenance is handled before we ever hear about it.</p>
+        <div class="who">Margaret H.<span>Property Owner · Naples</span></div>
+      </blockquote>
+      <blockquote class="quote reveal d1">
+        <span class="mark">“</span>
+        <p>The most responsive management I've rented from in fifteen years in Long Beach. Genuinely personal service.</p>
+        <div class="who">David & Lena R.<span>Tenants · Belmont Shore</span></div>
+      </blockquote>
+      <blockquote class="quote reveal d2">
+        <span class="mark">“</span>
+        <p>L/E maximized our rental income while keeping our long-term tenants happy. A rare and valuable balance.</p>
+        <div class="who">Theodore K.<span>Investor · Los Altos</span></div>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REFERRAL + APPLICATIONS ===== -->
+<section class="duo" id="referral">
+  <div class="duo-panel ref reveal">
+    <span class="eyebrow">Referral Program</span>
+    <h2>Know someone who needs a home — or a manager?</h2>
+    <p>Refer a friend, owner, or tenant to L/E and we'll thank you for it. Share a name and we'll take it from there.</p>
+    <form class="ref-form" onsubmit="return false">
+      <input type="text" placeholder="Your name" aria-label="Your name">
+      <input type="email" placeholder="Email address" aria-label="Email address">
+      <button class="btn btn--light" type="submit">Refer</button>
+    </form>
+  </div>
+  <div class="duo-panel app reveal d1" id="applications">
+    <span class="eyebrow">Applications</span>
+    <h2>Apply for a residence in four simple steps.</h2>
+    <ol class="steps">
+      <li>Browse available listings</li>
+      <li>Review qualifications & lease terms</li>
+      <li>Submit your application online</li>
+      <li>Meet the L/E team</li>
+    </ol>
+    <a class="btn" href="#contact">Begin Application</a>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="contact-info reveal">
+      <span class="eyebrow">Contact Us</span>
+      <h2 style="font-size:var(--fs-h2);font-weight:400;margin:.6rem 0 1.4rem">Let's talk about your home.</h2>
+      <div class="row"><div class="k">Email</div><div class="v">tony@lerealestategroup.com</div></div>
+      <div class="row"><div class="k">Service Area</div><div class="v">Long Beach, California</div></div>
+      <div class="row"><div class="k">Office Hours</div><div class="v">Mon – Fri · 9am – 5pm PST</div></div>
+      <div class="socials">
+        <a href="http://www.facebook.com/LErealestategroup" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h2.5l.5-3h-3V9c0-.6.4-1 1-1z"/></svg></a>
+        <a href="http://www.linkedin.com/company/l-e-real-estate-group" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H4V20h2.94V8.5zM5.47 4a1.7 1.7 0 100 3.4 1.7 1.7 0 000-3.4zM20 13.4c0-2.8-1.5-4.1-3.5-4.1-1.6 0-2.3.9-2.7 1.5V8.5H11V20h2.9v-6.1c0-.3 0-.6.1-.9.3-.6.8-1.3 1.8-1.3 1.3 0 1.8 1 1.8 2.4V20H20v-6.6z"/></svg></a>
+        <a href="mailto:tony@lerealestategroup.com" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4 5h16c.6 0 1 .4 1 1v12c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1V6c0-.6.4-1 1-1zm8 7L5 7v1l7 5 7-5V7l-7 5z"/></svg></a>
+      </div>
+    </div>
+    <div class="reveal d1">
+      <form class="contact-form" onsubmit="return false">
+        <div class="field row2">
+          <div class="field"><label>First Name</label><input type="text" placeholder="Jane"></div>
+          <div class="field"><label>Last Name</label><input type="text" placeholder="Doe"></div>
+        </div>
+        <div class="field"><label>Email</label><input type="email" placeholder="jane@email.com"></div>
+        <div class="field"><label>I am a</label>
+          <select><option>Prospective tenant</option><option>Property owner</option><option>Referral partner</option><option>Other</option></select>
+        </div>
+        <div class="field"><label>Message</label><textarea placeholder="Tell us how we can help…"></textarea></div>
+        <button class="btn" type="submit">Send Message</button>
+      </form>
+      <div class="map" style="margin-top:1.5rem">
+        <iframe title="Long Beach, CA map" loading="lazy" src="https://www.google.com/maps?q=Long+Beach,+California&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <svg class="le-logo le-logo--foot" viewBox="0 0 400 184" role="img" aria-label="L/E Real Estate Group">
+          <path fill="currentColor" fill-rule="nonzero" d="M 125.75 79.632812 L 116.828125 79.632812 L 116.828125 88.59375 L 125.421875 88.59375 L 125.421875 93.292969 L 116.828125 93.292969 L 116.828125 102.695312 L 125.75 102.695312 L 125.75 107.394531 L 111.429688 107.394531 L 111.429688 74.933594 L 125.75 74.933594 Z M 71.933594 142.722656 L 68.414062 141.625 L 100.191406 39.605469 L 103.710938 40.703125 Z M 59.410156 107.394531 L 46.375 107.394531 L 46.375 74.933594 L 51.773438 74.933594 L 51.773438 102.695312 L 59.410156 102.695312 Z M 86.0625 20.765625 C 46.527344 20.765625 14.472656 52.820312 14.472656 92.359375 C 14.472656 131.894531 46.527344 163.945312 86.0625 163.945312 C 125.601562 163.945312 157.652344 131.894531 157.652344 92.359375 C 157.652344 52.820312 125.601562 20.765625 86.0625 20.765625 M 190.433594 135.660156 L 193.191406 135.660156 L 193.191406 49.050781 L 190.433594 49.050781 Z M 342.449219 56.144531 L 327.964844 56.144531 L 327.964844 32.90625 L 321.574219 32.90625 L 321.574219 61.957031 L 342.449219 61.957031 Z M 333.191406 83.578125 L 342.035156 83.578125 L 342.035156 106.738281 L 348.421875 106.738281 L 348.421875 83.578125 L 357.261719 83.578125 L 357.261719 77.6875 L 333.191406 77.6875 Z M 344.773438 139.109375 C 344.773438 143.714844 342.410156 146.078125 338.507812 146.078125 C 334.605469 146.078125 332.238281 143.632812 332.238281 138.902344 L 332.238281 122.46875 L 325.847656 122.46875 L 325.847656 139.066406 C 325.847656 147.617188 330.621094 151.976562 338.421875 151.976562 C 346.226562 151.976562 351.164062 147.65625 351.164062 138.859375 L 351.164062 122.46875 L 344.773438 122.46875 Z M 242.257812 140.3125 L 248.691406 140.3125 L 248.691406 144.460938 C 247.070312 145.625 244.996094 146.203125 242.671875 146.203125 C 237.527344 146.203125 233.875 142.304688 233.875 136.992188 L 233.875 136.910156 C 233.875 131.972656 237.570312 127.863281 242.214844 127.863281 C 245.578125 127.863281 247.570312 128.941406 249.808594 130.808594 L 253.835938 125.953125 C 250.804688 123.378906 247.652344 121.96875 242.421875 121.96875 C 233.625 121.96875 227.195312 128.734375 227.195312 136.992188 L 227.195312 137.074219 C 227.195312 145.664062 233.417969 152.015625 242.464844 152.015625 C 247.777344 152.015625 251.886719 149.941406 254.875 147.40625 L 254.875 134.792969 L 242.257812 134.792969 Z M 278.78125 132.46875 C 278.78125 134.917969 276.996094 136.578125 273.882812 136.578125 L 267.410156 136.578125 L 267.410156 128.234375 L 273.757812 128.234375 C 276.871094 128.234375 278.78125 129.648438 278.78125 132.386719 Z M 285.253906 132.136719 L 285.253906 132.054688 C 285.253906 126.078125 281.148438 122.46875 274.300781 122.46875 L 261.019531 122.46875 L 261.019531 151.519531 L 267.410156 151.519531 L 267.410156 142.222656 L 272.429688 142.222656 L 278.65625 151.519531 L 286.125 151.519531 L 279.03125 141.144531 C 282.722656 139.773438 285.253906 136.824219 285.253906 132.136719 M 267.578125 101.507812 C 264.253906 101.507812 261.515625 100.140625 258.902344 97.980469 L 255.125 102.503906 C 258.613281 105.617188 263.050781 107.152344 267.453125 107.152344 C 273.71875 107.152344 278.117188 103.914062 278.117188 98.148438 L 278.117188 98.0625 C 278.117188 93 274.796875 90.882812 268.90625 89.347656 C 263.882812 88.0625 262.636719 87.4375 262.636719 85.53125 L 262.636719 85.445312 C 262.636719 84.035156 263.921875 82.914062 266.371094 82.914062 C 268.820312 82.914062 271.351562 83.996094 273.925781 85.777344 L 277.246094 80.964844 C 274.300781 78.597656 270.6875 77.269531 266.457031 77.269531 C 260.523438 77.269531 256.289062 80.757812 256.289062 86.027344 L 256.289062 86.109375 C 256.289062 91.878906 260.066406 93.496094 265.917969 94.992188 C 270.773438 96.238281 271.765625 97.066406 271.765625 98.683594 L 271.765625 98.769531 C 271.765625 100.46875 270.191406 101.507812 267.578125 101.507812 M 315.183594 94.578125 L 319.042969 85.15625 L 322.902344 94.578125 Z M 334.523438 106.738281 L 322.070312 77.476562 L 316.179688 77.476562 L 303.726562 106.738281 L 310.246094 106.738281 L 312.898438 100.222656 L 325.183594 100.222656 L 327.839844 106.738281 Z M 300.78125 40.375 L 304.636719 49.796875 L 296.917969 49.796875 Z M 294.636719 55.441406 L 306.921875 55.441406 L 309.578125 61.957031 L 316.257812 61.957031 L 303.808594 32.695312 L 297.914062 32.695312 L 285.464844 61.957031 L 291.980469 61.957031 Z M 281.4375 56.269531 L 265.667969 56.269531 L 265.667969 50.167969 L 279.363281 50.167969 L 279.363281 44.484375 L 265.667969 44.484375 L 265.667969 38.589844 L 281.230469 38.589844 L 281.230469 32.90625 L 259.316406 32.90625 L 259.316406 61.957031 L 281.4375 61.957031 Z M 369.34375 101.050781 L 369.34375 94.949219 L 383.039062 94.949219 L 383.039062 89.265625 L 369.34375 89.265625 L 369.34375 83.371094 L 384.90625 83.371094 L 384.90625 77.6875 L 362.996094 77.6875 L 362.996094 106.738281 L 385.113281 106.738281 L 385.113281 101.050781 Z M 313.933594 137.074219 C 313.933594 142.054688 310.367188 146.121094 305.21875 146.121094 C 300.074219 146.121094 296.421875 141.972656 296.421875 136.992188 L 296.421875 136.910156 C 296.421875 131.929688 299.992188 127.863281 305.136719 127.863281 C 310.285156 127.863281 313.933594 132.011719 313.933594 136.992188 Z M 305.21875 121.96875 C 296.253906 121.96875 289.742188 128.734375 289.742188 136.992188 L 289.742188 137.074219 C 289.742188 145.335938 296.171875 152.015625 305.136719 152.015625 C 314.101562 152.015625 320.617188 145.25 320.617188 136.992188 L 320.617188 136.910156 C 320.617188 128.652344 314.183594 121.96875 305.21875 121.96875 M 296.21875 106.738281 L 296.21875 83.578125 L 305.058594 83.578125 L 305.058594 77.6875 L 280.988281 77.6875 L 280.988281 83.578125 L 289.828125 83.578125 L 289.828125 106.738281 Z M 234.871094 38.671875 L 241.21875 38.671875 C 244.332031 38.671875 246.242188 40.085938 246.242188 42.824219 L 246.242188 42.90625 C 246.242188 45.355469 244.457031 47.015625 241.34375 47.015625 L 234.871094 47.015625 Z M 234.871094 52.660156 L 239.890625 52.660156 L 246.117188 61.957031 L 253.585938 61.957031 L 246.492188 51.582031 C 250.183594 50.210938 252.714844 47.265625 252.714844 42.574219 L 252.714844 42.492188 C 252.714844 36.515625 248.609375 32.90625 241.757812 32.90625 L 228.480469 32.90625 L 228.480469 61.957031 L 234.871094 61.957031 Z M 374.199219 132.71875 C 374.199219 135.207031 372.332031 137.117188 369.136719 137.117188 L 364.074219 137.117188 L 364.074219 128.234375 L 369.011719 128.234375 C 372.207031 128.234375 374.199219 129.773438 374.199219 132.636719 Z M 369.550781 122.46875 L 357.683594 122.46875 L 357.683594 151.519531 L 364.074219 151.519531 L 364.074219 142.804688 L 368.929688 142.804688 C 375.445312 142.804688 380.675781 139.316406 380.675781 132.59375 L 380.675781 132.511719 C 380.675781 126.574219 376.484375 122.46875 369.550781 122.46875 M 250.597656 101.050781 L 234.828125 101.050781 L 234.828125 94.949219 L 248.527344 94.949219 L 248.527344 89.265625 L 234.828125 89.265625 L 234.828125 83.371094 L 250.390625 83.371094 L 250.390625 77.6875 L 228.480469 77.6875 L 228.480469 106.738281 L 250.597656 106.738281 Z M 250.597656 101.050781 "/>
+        </svg>
+        <p>L/E Real Estate Group — personalized residential management and exceptional service across Long Beach, California.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Explore</h5>
+        <a href="#properties">Properties</a>
+        <a href="#management">Management</a>
+        <a href="#referral">Referral Program</a>
+        <a href="#applications">Applications</a>
+      </div>
+      <div class="foot-col">
+        <h5>Connect</h5>
+        <a href="#contact">Contact Us</a>
+        <a href="mailto:tony@lerealestategroup.com">Email</a>
+        <a href="http://www.facebook.com/LErealestategroup">Facebook</a>
+        <a href="http://www.linkedin.com/company/l-e-real-estate-group">LinkedIn</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span class="em">L/E Real Estate Group · LErealestategroup.com</span>
+      <span>© 2026 L/E Real Estate Group. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav state
+  const nav=document.getElementById('nav');
+  const onScroll=()=>{nav.classList.toggle('scrolled',window.scrollY>40);
+    // subtle parallax
+    const bg=document.getElementById('heroBg');
+    if(bg) bg.style.transform='scale(1.08) translateY('+(window.scrollY*0.18)+'px)';
+  };
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // Mobile menu
+  const toggle=document.getElementById('toggle'),menu=document.getElementById('menu');
+  toggle.addEventListener('click',()=>menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+
+  // Scroll reveal
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Featured property gallery
+  const galMain=document.getElementById('galMain'),galThumbs=document.getElementById('galThumbs');
+  if(galThumbs){
+    galThumbs.addEventListener('click',e=>{
+      const b=e.target.closest('.thumb');if(!b)return;
+      galThumbs.querySelector('.active').classList.remove('active');b.classList.add('active');
+      galMain.style.opacity=0;
+      const img=new Image();img.onload=()=>{galMain.src=img.src;galMain.style.opacity=1;};
+      img.src=b.dataset.full;
+    });
+  }
+</script>
+</body>
+</html>

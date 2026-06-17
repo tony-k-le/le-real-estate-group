@@ -1,0 +1,8 @@
+# Old Squarespace URLs -> new single-page anchors (preserve SEO/bookmarks)
+/home              /                301
+/properties        /#properties     301
+/properies         /#properties     301
+/management        /#management     301
+/referral-program  /#referral       301
+/applications      /#applications   301
+/contact-us        /#contact        301

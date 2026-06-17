@@ -1,4 +1,6 @@
 # Cloudflare Pages configuration
-name = "le-real-estate"
+name = "le-real-estate-group"
 compatibility_date = "2025-05-01"
-pages_build_output_dir = "public"
+
+[assets]
+directory = "./public"
